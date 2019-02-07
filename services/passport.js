@@ -1,14 +1,10 @@
 const passport = require("passport");
 const mysql = require("mysql");
+const db = require("../config_db/db");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const keys = require("../config/keys");
+const keys = require("../config_keys/keys");
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Grandmaster13",
-  database: "togather"
-});
+const connection = mysql.createConnection(db);
 
 connection.connect(function(error) {
   if (error) {
