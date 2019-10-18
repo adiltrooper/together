@@ -58,7 +58,7 @@ app.post(`/api/csp/report`, (req, res) => {
 
 if (process.env.NODE_ENV === "production") {
   //Express will serve up production assets like js files
-  app.user(express.static("client/build"));
+  app.use(express.static("client/build"));
   //Express will serve up index.html file if dont recognise route
   const path = require("path");
   app.get("*", (req, res) => {
