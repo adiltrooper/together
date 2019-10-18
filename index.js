@@ -56,5 +56,15 @@ app.post(`/api/csp/report`, (req, res) => {
 
 //telling express to make use of cookies as it does not have capability out of the box
 
+if (process.env.NODE_ENV === "production") {
+  //Express will serve up production assets like js files
+  app.user(express.static("client/build"));
+  //Express will serve up index.html file if dont recognise route
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
