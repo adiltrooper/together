@@ -171,7 +171,6 @@ module.exports = app => {
                             console.log(err);
                           });
                         }
-
                         var query = "Select id FROM tags WHERE tag_name IN (";
 
                         for (i = 0; i < tagsArray.length; i++) {
