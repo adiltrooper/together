@@ -107,6 +107,7 @@ module.exports = app => {
           temporary,
           activity_description
         } = req.body;
+
         console.log("YAY GOT POOL");
 
         var tagsArray = tags.split(",");
@@ -120,7 +121,7 @@ module.exports = app => {
         const img_path = req.file["path"].slice(10);
         const uploadedFile = req.file;
 
-        const localImgConfig = "/Users/adil/Dropbox/Datehive/uploads";
+        const localImgConfig = "/Users/adil/Dropbox/Together/uploads";
 
         //need to confirm that listing exists for review to be included
         connection.beginTransaction(function(err) {
