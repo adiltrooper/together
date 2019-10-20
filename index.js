@@ -7,9 +7,6 @@ const cors = require("cors");
 const csp = require("helmet-csp");
 const winston = require("winston");
 const logger = require("heroku-logger");
-
-logger.info("message", { key: "value" });
-
 require("./services/passport");
 
 const app = express();
