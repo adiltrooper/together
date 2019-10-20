@@ -237,7 +237,6 @@ module.exports = app => {
                               }
                               console.log("New Listing Saved!");
                               res.send("Hello");
-                              connection.release();
                             });
                           });
                         });
@@ -250,6 +249,7 @@ module.exports = app => {
           );
         });
       }
+      connection.release();
     });
   });
 };
