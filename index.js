@@ -29,6 +29,8 @@ app.use(passport.session());
 const authRoutes = require("./routes/authRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 
+console.log("HELLO");
+
 authRoutes(app);
 reviewRoutes(app);
 {
