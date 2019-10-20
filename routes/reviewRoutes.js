@@ -107,6 +107,7 @@ module.exports = app => {
           temporary,
           activity_description
         } = req.body;
+        console.log("YAY GOT POOL");
 
         var tagsArray = tags.split(",");
         var nestedArray = [];
