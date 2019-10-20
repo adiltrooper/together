@@ -36,62 +36,62 @@ const upload = multer({ storage: storage }).single("testfile");
 const requireLogin = require("../middlewares/requireLogin");
 
 module.exports = app => {
-  app.post("/compose/review", requireLogin, (req, res) => {
-    pool.getConnection(function(err, connection) {
-      if (err) {
-        res.send("Connection Error");
-      } else {
-        const {
-          activity_name,
-          activity_description,
-          temporary_event,
-          start_date,
-          end_date,
-          price,
-          avg_time_spent,
-          location_id,
-          location_name,
-          wicb,
-          review_datetime
-        } = req.body;
-
-        console.log(req.body);
-        //whats happening: off the body property, i want to get access to these properties
-        //need to confirm that listing exists for review to be included
-        connection.beginTransaction(function(err) {
-          connection.query(
-            "INSERT INTO reviews (user_profile_id, listing_id, review_description, price_per_pax, price_per_hr, avg_time_spent, wicb) VALUES ((SELECT id FROM user_profile WHERE profile_name = 'Muhammad Adil'), (SELECT id FROM listing WHERE id = 5), ?, ?, ?, ?, ?)",
-            [
-              review_description,
-              price_per_pax,
-              price_per_hr,
-              avg_time_spent,
-              wicb
-            ],
-            function(err, results, fields) {
-              if (err) {
-                return connection.rollback(function() {
-                  throw error;
-                });
-              }
-
-              connection.query(
-                "INSERT INTO category (category_title) VALUES ?",
-                [category_title],
-                function(err, results, fields) {
-                  if (err) {
-                    return connection.rollback(function() {
-                      throw error;
-                    });
-                  }
-                }
-              );
-            }
-          );
-        });
-      }
-    });
-  });
+  // app.post("/compose/review", requireLogin, (req, res) => {
+  //   pool.getConnection(function(err, connection) {
+  //     if (err) {
+  //       res.send("Connection Error");
+  //     } else {
+  //       const {
+  //         activity_name,
+  //         activity_description,
+  //         temporary_event,
+  //         start_date,
+  //         end_date,
+  //         price,
+  //         avg_time_spent,
+  //         location_id,
+  //         location_name,
+  //         wicb,
+  //         review_datetime
+  //       } = req.body;
+  //
+  //       console.log(req.body);
+  //       //whats happening: off the body property, i want to get access to these properties
+  //       //need to confirm that listing exists for review to be included
+  //       connection.beginTransaction(function(err) {
+  //         connection.query(
+  //           "INSERT INTO reviews (user_profile_id, listing_id, review_description, price_per_pax, price_per_hr, avg_time_spent, wicb) VALUES ((SELECT id FROM user_profile WHERE profile_name = 'Muhammad Adil'), (SELECT id FROM listing WHERE id = 5), ?, ?, ?, ?, ?)",
+  //           [
+  //             review_description,
+  //             price_per_pax,
+  //             price_per_hr,
+  //             avg_time_spent,
+  //             wicb
+  //           ],
+  //           function(err, results, fields) {
+  //             if (err) {
+  //               return connection.rollback(function() {
+  //                 throw error;
+  //               });
+  //             }
+  //
+  //             connection.query(
+  //               "INSERT INTO category (category_title) VALUES ?",
+  //               [category_title],
+  //               function(err, results, fields) {
+  //                 if (err) {
+  //                   return connection.rollback(function() {
+  //                     throw error;
+  //                   });
+  //                 }
+  //               }
+  //             );
+  //           }
+  //         );
+  //       });
+  //     }
+  //   });
+  // });
 
   //POSTING NEW LISTING + STORING NEW LISTING
   app.post("/compose/listing", requireLogin, upload, (req, res, next) => {
@@ -237,6 +237,7 @@ module.exports = app => {
                               }
                               console.log("New Listing Saved!");
                               res.send("Hello");
+                              connection.release();
                             });
                           });
                         });
