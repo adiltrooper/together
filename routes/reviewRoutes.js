@@ -124,7 +124,7 @@ module.exports = app => {
         //need to confirm that listing exists for review to be included
         connection.beginTransaction(function(err) {
           connection.query(
-            "INSERT INTO listing (user_profile_id, foursquare_id, activity_name,  duration, temporary, price, activity_description) VALUES (?, ?, ?, ?, ?, ?)",
+            "INSERT INTO listing (user_profile_id, foursquare_id, activity_name,  duration, temporary_event, price, activity_description) VALUES (?, ?, ?, ?, ?, ?, ?)",
             [
               user_profile_id,
               foursquare_id,
