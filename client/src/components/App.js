@@ -16,8 +16,8 @@ library.add(faSearch);
 
 const GlobalStyles = createGlobalStyle`
   body {
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-    font-family: 'Open Sans', sans-serif;
+    @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
   }
 `;

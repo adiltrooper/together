@@ -19,6 +19,7 @@ const VariableField = field => {
           <InputStyleHelper>
             <ReviewInput {...field.input} as="textarea" placeholder="" />
           </InputStyleHelper>
+          {field.meta.touched && field.meta.error}
         </ReviewWrapper>
       );
 
@@ -29,6 +30,7 @@ const VariableField = field => {
           <InputStyleHelper>
             <SearchInput {...field.input} />
           </InputStyleHelper>
+          {field.meta.touched && field.meta.error}
         </ReviewWrapper>
       );
 
@@ -39,14 +41,17 @@ const VariableField = field => {
           <InputStyleHelper>
             <ReviewInput {...field.input} placeholder="Text here" />
           </InputStyleHelper>
+          {field.meta.touched && field.meta.error}
         </ReviewWrapper>
       );
 
     case "tags":
+      console.log(field.meta);
       return (
         <ReviewWrapper>
           <Label>{field.label}</Label>
           <ReviewTagging {...field.input} />
+          {field.meta.touched && field.meta.error}
         </ReviewWrapper>
       );
 
@@ -55,6 +60,7 @@ const VariableField = field => {
         <ReviewWrapper>
           <Label>{field.label}</Label>
           <RadioGroup {...field.input} field={field} />
+          {field.meta.touched && field.meta.error}
         </ReviewWrapper>
       );
 
@@ -63,6 +69,7 @@ const VariableField = field => {
         <ReviewWrapper>
           <Label>{field.label}</Label>
           <Slider {...field.input} />
+          {field.meta.touched && field.meta.error}
         </ReviewWrapper>
       );
 
@@ -71,6 +78,7 @@ const VariableField = field => {
         <ReviewWrapper>
           <Label>{field.label}</Label>
           <Checkbox {...field.input} />
+          {field.meta.touched && field.meta.error}
         </ReviewWrapper>
       );
 

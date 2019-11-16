@@ -34,7 +34,35 @@ const CreateReviewFirstPage = props => {
   );
 };
 
+function validate(values) {
+  const errors = {};
+  console.log(values.activity_name);
+
+  if (!values.foursquare_id) {
+    errors.foursquare_id = "You must provide a location!";
+  }
+
+  if (!values.activity_name) {
+    errors.activity_name = "Don't forget to tell us what you did!";
+  }
+
+  if (!values.tags || !values.tags.length) {
+    errors.tags = "please enter at least one tag";
+  }
+
+  // function checkTags(values) {
+  //   if (!values[0]) {
+  //     return "HELLO";
+  //   }
+  // }
+  //
+  // errors.tags = checkTags(values.tags || []);
+
+  return errors;
+}
+
 export default reduxForm({
+  validate: validate,
   form: "newListing",
   destroyOnUnmount: false
 })(CreateReviewFirstPage);

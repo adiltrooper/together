@@ -18,7 +18,6 @@ class ReviewTagging extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state.tags);
     this.props.onChange(this.state.tags);
   }
 
@@ -75,6 +74,7 @@ class ReviewTagging extends React.Component {
             ))}
           </ul>
           <ReviewInput
+            {...this.props}
             placeholder="Add tags..."
             value={this.state.value}
             onChange={this.handleChange}

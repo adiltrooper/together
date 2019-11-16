@@ -11,6 +11,7 @@ const NavALink = styled.a`
   letter-spacing: 0.05em;
   color: black;
   text-decoration: none;
+  border: 1px solid blue;
 `;
 
 export default NavALink;
